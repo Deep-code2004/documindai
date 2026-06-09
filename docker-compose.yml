@@ -1,0 +1,24 @@
+services:
+  backend:
+    build: ./backend
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - docmindai_data:/data
+
+  ui:
+    build: ./ui
+    env_file:
+      - .env
+    ports:
+      - "8501:8501"
+    volumes:
+      - docmindai_data:/data
+    depends_on:
+      - backend
+
+volumes:
+  docmindai_data:
+
